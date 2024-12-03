@@ -28,8 +28,9 @@ export default defineConfig(({ mode }) => {
       open: env.VITE_SERVER_OPEN === 'true', // Open browser on server start
     },
     build: {
-      sourcemap: env.VITE_SOURCEMAP === 'true', // Enable source maps based on env
-      outDir: env.VITE_OUTPUT_DIR || 'dist', // Output directory for build
+      outDir: "dist",
+      sourcemap: true,
+      cssCodeSplit: true,
     },
   };
 });

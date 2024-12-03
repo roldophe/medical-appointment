@@ -10,7 +10,7 @@ body {
 
   &.dark {
     background-color: vars.$background-dark;
-    background-image: url('path/to/your/dark-background.jpg');
+    background-image: url('./../images/dark-background.jpg');
   }
 }
 
