@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faCheck } from "@fortawesome/free-solid-svg-icons";
 
@@ -64,10 +64,8 @@ const SpecialitiesSection: React.FC = () => (
 );
 
 const NavbarSearchFiltersFour: React.FC = () => {
-  const [searchTerm, setSearchTerm] = useState("");
 
   const handleClearAll = () => {
-    setSearchTerm("");
     // Optionally, reset any filters here
   };
 
