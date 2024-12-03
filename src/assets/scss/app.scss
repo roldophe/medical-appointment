@@ -1,0 +1,20 @@
+@use './custom/base/variables' as vars;
+
+body {
+  background-color: vars.$background-light;
+  background-image: vars.$background-image;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  transition: background-color 0.3s ease, background-image 0.3s ease;
+
+  &.dark {
+    background-color: vars.$background-dark;
+    background-image: url('path/to/your/dark-background.jpg');
+  }
+}
+
+// Optional additional styles for dark mode
+body.dark .some-other-element {
+  color: white; /* Adjust text color for dark mode */
+}

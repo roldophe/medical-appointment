@@ -1,108 +1,124 @@
 /** @type {import('tailwindcss').Config} */
+
+const colors = require("tailwindcss/colors");
+const plugin = require("tailwindcss/plugin");
+
 export default {
+  darkMode: 'class',
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
+      screens: {
+        xs: { max: "639px" },
+        sm: "640px",
+        md: "768px",
+        lg: "1025px",
+        xl: "1280px",
+        xxl: "1536px",
+        ptablet: {
+          raw: "(min-width: 768px) and (max-width: 1024px) and (orientation: portrait)",
+        },
+        ltablet: {
+          raw: "(min-width: 768px) and (max-width: 1024px) and (orientation: landscape)",
+        },
+      },
       colors: {
-        primary: {
-          50: '#e6ebf5',
-          100: '#cdd7ea',
-          150: '#bfd1e7',
-          200: '#b3c2e0',
-          250: '#a8b8dd',
-          300: '#99add6',
-          350: '#8ea3d3',
-          400: '#8098cc',
-          450: '#768ecd',
-          500: '#6683c2',
-          550: '#5978b7',
-          600: '#4c6eb8',
-          650: '#4664a3',
-          700: '#3259ae',
-          750: '#2d4f99',
-          800: '#1e429f',
-          850: '#1b3d90',
-          900: '#17366d',
-          950: '#152f5c'
+        primary: colors.indigo,
+        info: colors.sky,
+        success: colors.teal,
+        warning: colors.amber,
+        danger: colors.rose,
+        muted: {
+          ...colors.slate,
+          1000: "#0a101f",
         },
-        secondary: {
-          50: '#fefefe',
-          100: '#fdfdfd',
-          150: '#fcfcfc',
-          200: '#fbfbfb',
-          250: '#fafafa',
-          300: '#f9f9f9',
-          350: '#f8f8f8',
-          400: '#f7f7f7',
-          450: '#f6f6f6',
-          500: '#f5f5f5',
-          550: '#f4f4f4',
-          600: '#f3f3f3',
-          650: '#f2f2f2',
-          700: '#f1f1f1',
-          750: '#f0f0f0',
-          800: '#efefef',
-          850: '#eeeeee',
-          900: '#ededed',
-          950: '#ececec'
+        slate: {
+          1000: "#0a101f",
         },
-        accent: {
-          50: '#fef3e0',
-          100: '#fde7c2',
-          150: '#fddfb2',
-          200: '#fcdba3',
-          250: '#fbce85',
-          300: '#fac266',
-          350: '#f9b848',
-          400: '#f8ad29',
-          450: '#f7a51a',
-          500: '#f69d0c',
-          550: '#f4950e',
-          600: '#f38c10',
-          650: '#f28312',
-          700: '#f17a14',
-          750: '#f07116',
-          800: '#ef6818',
-          850: '#ed5f1a',
-          900: '#ec561c',
-          950: '#eb4d1e'
-        }
+        gray: {
+          1000: "#080c14",
+        },
+        zinc: {
+          1000: "#101012",
+        },
+        neutral: {
+          1000: "#080808",
+        },
+        stone: {
+          1000: "#0f0d0c",
+        },
       },
       fontFamily: {
         suwannaphum: ['Suwannaphum', 'serif'],
         kantumruy: ['"Kantumruy Pro"', 'sans-serif'],  
-      },
-      fontWeight: {
-        hairline: 100,   // Sometimes referred to as 'Thin'
-        thin: 200,
-        light: 300,
-        normal: 400,     // Default font weight
-        medium: 500,
-        semibold: 600,
-        bold: 700,
-        extrabold: 800,
-        black: 900  
-      },
-      fontSize: {
-        xs: ['0.75rem', { lineHeight: '1rem' }],
-        sm: ['0.875rem', { lineHeight: '1.25rem' }],
-        base: ['1rem', { lineHeight: '1.5rem' }],
-        lg: ['1.125rem', { lineHeight: '1.75rem' }],
-        xl: ['1.25rem', { lineHeight: '1.75rem' }],
-        '2xl': ['1.5rem', { lineHeight: '2rem' }],
-        '3xl': ['1.875rem', { lineHeight: '2.25rem' }],
-        '4xl': ['2.25rem', { lineHeight: '2.5rem' }],
-        '5xl': ['3rem', { lineHeight: '1' }],
-        '6xl': ['3.75rem', { lineHeight: '1' }],
-        '7xl': ['4.5rem', { lineHeight: '1' }],
-        '8xl': ['6rem', { lineHeight: '1' }],
-        '9xl': ['8rem', { lineHeight: '1' }],
-      },
+      }
     },
   },
-  plugins: [],
+  plugins: [
+    require("@tailwindcss/typography"),
+    require("@tailwindcss/aspect-ratio"),
+		//Additional utilities
+		plugin(function ({ addUtilities }) {
+      addUtilities({
+        '.slimscroll::-webkit-scrollbar': {
+          width: '6px',
+        },
+        '.slimscroll::-webkit-scrollbar-thumb': {
+          borderRadius: '.75rem',
+          background: 'rgba(0, 0, 0, 0.1)',
+        },
+        '.slimscroll-opaque::-webkit-scrollbar-thumb': {
+          background: 'rgba(0, 0, 0, 0) !important',
+        },
+        '.mask': {
+          'mask-size': 'contain',
+          'mask-repeat': 'no-repeat',
+          'mask-position': 'center',
+        },
+        '.mask-hex': {
+          'mask-image':
+            "url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE4MiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNjQuNzg2IDE4MS40Yy05LjE5NiAwLTIwLjA2My02LjY4Ny0yNS4wNzktMTQuMjFMMy43NjIgMTA1LjMzYy01LjAxNi04LjM2LTUuMDE2LTIwLjkgMC0yOS4yNTlsMzUuOTQ1LTYxLjg2QzQ0LjcyMyA1Ljg1MSA1NS41OSAwIDY0Ljc4NiAwaDcxLjA1NWM5LjE5NiAwIDIwLjA2MyA2LjY4OCAyNS4wNzkgMTQuMjExbDM1Ljk0NSA2MS44NmM0LjE4IDguMzYgNC4xOCAyMC44OTkgMCAyOS4yNThsLTM1Ljk0NSA2MS44NmMtNC4xOCA4LjM2LTE1Ljg4MyAxNC4yMTEtMjUuMDc5IDE0LjIxMUg2NC43ODZ6Ii8+PC9zdmc+')",
+        },
+        '.mask-hexed': {
+          'mask-image':
+            "url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgyIiBoZWlnaHQ9IjIwMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNLjMgNjUuNDg2YzAtOS4xOTYgNi42ODctMjAuMDYzIDE0LjIxMS0yNS4wNzhsNjEuODYtMzUuOTQ2YzguMzYtNS4wMTYgMjAuODk5LTUuMDE2IDI5LjI1OCAwbDYxLjg2IDM1Ljk0NmM4LjM2IDUuMDE1IDE0LjIxMSAxNS44ODIgMTQuMjExIDI1LjA3OHY3MS4wNTVjMCA5LjE5Ni02LjY4NyAyMC4wNjMtMTQuMjExIDI1LjA3OWwtNjEuODYgMzUuOTQ1Yy04LjM2IDQuMTgtMjAuODk5IDQuMTgtMjkuMjU4IDBsLTYxLjg2LTM1Ljk0NUM2LjE1MSAxNTcuNDQuMyAxNDUuNzM3LjMgMTM2LjU0VjY1LjQ4NnoiLz48L3N2Zz4=')",
+        },
+        '.mask-deca': {
+          'mask-image':
+            "url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNOTYgMGw1OC43NzkgMTkuMDk4IDM2LjMyNyA1MHY2MS44MDRsLTM2LjMyNyA1MEw5NiAyMDBsLTU4Ljc3OS0xOS4wOTgtMzYuMzI3LTUwVjY5LjA5OGwzNi4zMjctNTB6IiBmaWxsLXJ1bGU9ImV2ZW5vZGQiLz48L3N2Zz4=')",
+        },
+        '.mask-blob': {
+          'mask-image':
+            "url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTAwIDBDMjAgMCAwIDIwIDAgMTAwczIwIDEwMCAxMDAgMTAwIDEwMC0yMCAxMDAtMTAwUzE4MCAwIDEwMCAweiIvPjwvc3ZnPg==')",
+        },
+        '.mask-diamond': {
+          'mask-image':
+            "url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTAwIDBsMTAwIDEwMC0xMDAgMTAwTDAgMTAweiIgZmlsbC1ydWxlPSJldmVub2RkIi8+PC9zdmc+')",
+        },
+      })
+    }),
+    //Expose Tailwind colors
+    function ({ addBase, theme }) {
+      function extractColorVars(colorObj, colorGroup = "") {
+        return Object.keys(colorObj).reduce((vars, colorKey) => {
+          const value = colorObj[colorKey];
+
+          const newVars =
+            typeof value === "string"
+              ? { [`--color${colorGroup}-${colorKey}`]: value }
+              : extractColorVars(value, `-${colorKey}`);
+
+          return { ...vars, ...newVars };
+        }, {});
+      }
+
+      addBase({
+        ":root": extractColorVars(theme("colors")),
+      });
+    },
+  ]
 }
 
