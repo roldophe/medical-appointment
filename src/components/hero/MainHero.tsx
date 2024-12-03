@@ -37,7 +37,7 @@ const MainHero: React.FC = () => {
                     {/* Right Section */}
                     <div className="relative col-span-12 ltablet:col-span-7 lg:col-span-7">
                         <img
-                            src="src/assets/images/illustrations/hero.svg"
+                            src="public/images/illustrations/hero.svg"
                             className="block w-full ltablet:max-w-[540px] max-w-[620px] mx-auto"
                             alt="Hero illustration"
                         />

@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import Lottie, { LottieRefCurrentProps } from 'lottie-react';
 import animationData from '../../assets/animation/loginAnimation.json';
 import { Link } from 'react-router-dom';
-import Logo from '../../assets/images/lotus-flower.png';
+import Logo from '../../../public/images/lotus-flower.png';
 const SignInForm: React.FC = () => {
     
     const prodRef = useRef<LottieRefCurrentProps | null>(null);

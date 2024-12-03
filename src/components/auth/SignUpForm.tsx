@@ -2,7 +2,7 @@ import Lottie, { LottieRefCurrentProps } from 'lottie-react';
 import React, { useRef, useState } from 'react';
 import animationData from '../../assets/animation/loginAnimation.json';
 import { Link } from 'react-router-dom';
-import Logo from '../../assets/images/lotus-flower.png';
+import Logo from '../../../public/images/lotus-flower.png';
 const SignUpForm: React.FC = () => {
     const prodRef = useRef<LottieRefCurrentProps | null>(null);
     const [reverseCount, setReverseCount] = useState(0);

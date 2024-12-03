@@ -1,6 +1,5 @@
 import React from 'react';
-import logo from '/src/assets/images/logo-square.svg';
-
+import logo from '../../../public/images/logo-square.svg';
 interface LogoProps {
   className?: string;
 }
